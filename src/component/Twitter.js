@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 var axios = require("axios");
+const STATIC_URL = "https://twitter-server-123.herokuapp.com";
 class Twitter extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,7 @@ class Twitter extends Component {
 
   async findMututalFriends() {
     try {
-      const url = `http://localhost:7777/friends/mutual/${this.state.user1}/${this.state.user2}`;
+      const url = `${STATIC_URL}/friends/mutual/${this.state.user1}/${this.state.user2}`;
       const res = await axios.get(url);
       if (res.data.status && res.data.mutualFriends.length > 0) {
         this.setState({ mutualFriends: res.data.mutualFriends });
