@@ -8,5 +8,8 @@ yarn install
 yarn start
 ```
 
+## Run HTTP Server Locally
+`python -m SimpleHTTPServer 8090`
+
 ## Author
 Yogendra Saxena
