@@ -13,7 +13,7 @@ class Twitter extends Component {
       const url = `${STATIC_URL}/friends/mutual/${this.state.user1}/${this.state.user2}`;
       const res = await axios.get(url);
       if (res.data.status && res.data.mutualFriends.length > 0) {
-        res.data.message?this.infoToShow===res.data.message:""
+        res.data.message?this.infoToShow=res.data.message:""
         this.setState({ mutualFriends: res.data.mutualFriends });
       } else {
         throw new Error();
