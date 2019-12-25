@@ -1,3 +1,12 @@
 # Twitter-Client
 
-https://twitter-client-a9e76.firebaseapp.com/
+Twitter find Mutual Friends
+
+## How To Run
+```
+yarn install
+yarn start
+```
+
+## Author
+Yogendra Saxena
