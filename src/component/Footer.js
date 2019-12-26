@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div class="footer">
+    <div className="footer">
       <p>
         Made by{" @"}
         <a style={{ color: "blue" }} href="https://github.com/yogain123">

@@ -32,8 +32,10 @@ class Twitter extends Component {
     if (this.state.mutualFriends.length === 0) {
       return this.infoToShow;
     }
-    return this.state.mutualFriends.map(item => (
-      <li class="list-group-item">{item}</li>
+    return this.state.mutualFriends.map((item, index) => (
+      <li key={index} className="list-group-item">
+        {item}
+      </li>
     ));
   }
 
@@ -79,14 +81,14 @@ class Twitter extends Component {
               style={{ marginTop: "50px", marginLeft: "10px" }}
               type="button"
               className="btn btn-primary center-block"
-              onClick={() => this.setState(() => this.clearInputs())}
+              onClick={() => this.clearInputs()}
             >
               Clear
             </button>
           </div>
         </form>
         <hr />
-        <ul class="list-group" style={{ marginBottom: "50px" }}>
+        <ul className="list-group" style={{ marginBottom: "50px" }}>
           {this.renderMutualFriendsList()}
         </ul>
       </React.Fragment>
