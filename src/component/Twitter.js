@@ -8,7 +8,8 @@ class Twitter extends Component {
     this.infoToShow = <h5>Loading...</h5>;
   }
 
-  async findMututalFriends() {
+  async findMututalFriends(event) {
+    event.preventDefault();
     try {
       const url = `${STATIC_URL}/friends/mutual/${this.state.user1}/${this.state.user2}`;
       const res = await axios.get(url);
@@ -72,9 +73,9 @@ class Twitter extends Component {
             <div className="btn-group">
               <button
                 style={{ width: "10rem", marginTop: "50px" }}
-                type="button"
+                type="submit"
                 className="btn btn-primary"
-                onClick={() => this.findMututalFriends()}
+                onClick={event => this.findMututalFriends(event)}
               >
                 Submit
               </button>
