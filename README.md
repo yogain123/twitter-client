@@ -9,7 +9,10 @@ yarn install
 yarn start
 ```
 
-## Run HTTP Server Locally
+## How to build
+`npm build`
+
+## Run HTTP Server Locally inside build folder
 
 `python -m SimpleHTTPServer 8090`
 
