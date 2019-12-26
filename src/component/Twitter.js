@@ -71,7 +71,7 @@ class Twitter extends Component {
           <div className="text-center">
             <div className="btn-group">
               <button
-                style={{ marginTop: "50px" }}
+                style={{ width: "10rem", marginTop: "50px" }}
                 type="button"
                 className="btn btn-primary"
                 onClick={() => this.findMututalFriends()}
@@ -79,7 +79,11 @@ class Twitter extends Component {
                 Submit
               </button>
               <button
-                style={{ marginTop: "50px", marginLeft: "10px" }}
+                style={{
+                  width: "10rem",
+                  marginTop: "50px",
+                  marginLeft: "10px"
+                }}
                 type="button"
                 className="btn btn-primary"
                 onClick={() => this.clearInputs()}
