@@ -10,7 +10,7 @@ yarn start
 ```
 
 ## How to build
-`npm build`
+`yarn build`
 
 ## Run HTTP Server Locally inside build folder
 
