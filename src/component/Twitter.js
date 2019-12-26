@@ -68,23 +68,25 @@ class Twitter extends Component {
               />
             </div>
           </div>
-          <div className="btn-group">
-            <button
-              style={{ marginTop: "50px", marginLeft: "470px" }}
-              type="button"
-              className="btn btn-primary center-block"
-              onClick={() => this.findMututalFriends()}
-            >
-              Submit
-            </button>
-            <button
-              style={{ marginTop: "50px", marginLeft: "10px" }}
-              type="button"
-              className="btn btn-primary center-block"
-              onClick={() => this.clearInputs()}
-            >
-              Clear
-            </button>
+          <div className="text-center">
+            <div className="btn-group">
+              <button
+                style={{ marginTop: "50px" }}
+                type="button"
+                className="btn btn-primary"
+                onClick={() => this.findMututalFriends()}
+              >
+                Submit
+              </button>
+              <button
+                style={{ marginTop: "50px", marginLeft: "10px" }}
+                type="button"
+                className="btn btn-primary"
+                onClick={() => this.clearInputs()}
+              >
+                Clear
+              </button>
+            </div>
           </div>
         </form>
         <hr />
