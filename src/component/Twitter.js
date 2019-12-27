@@ -1,51 +1,56 @@
 import React, { Component } from "react";
+import LoadingSpinner from "./LoadingSpinner";
 var axios = require("axios");
 const STATIC_URL = "https://twitter-server-123.herokuapp.com";
 class Twitter extends Component {
   constructor(props) {
     console.log("inside constructor");
     super(props);
-    this.state = { user1: "", user2: "", mutualFriends: [] };
-    this.infoToShow = <h5 className="text-center">Loading...</h5>;
+    this.state = { user1: "", user2: "", mutualFriends: [], loading: false };
   }
 
   componentDidMount() {
     console.log("Inside ComponentDidMount");
-    this.infoToShow = <h5 className="text-center">Waiting for Submit...</h5>;
   }
 
   componentDidUpdate(prevProps, preState) {
     console.log("inside componentDidUpdate");
-    this.infoToShow = <h5 className="text-center">Waiting for Submit...</h5>;
   }
 
   componentWillUnmount() {
     console.log("inside componentWillUnmount");
   }
 
-  async findMututalFriends(event) {
+  findMututalFriends(event) {
     event.preventDefault();
-    try {
-      const url = `${STATIC_URL}/friends/mutual/${this.state.user1}/${this.state.user2}`;
-      const res = await axios.get(url);
-      if (res.data.status && res.data.mutualFriends.length > 0) {
-        this.setState({ mutualFriends: res.data.mutualFriends });
-      } else {
-        if (res.data.message) {
-          this.infoToShow = (
-            <h5 className="text-danger text-center">{res.data.message}</h5>
-          );
-          this.setState({ mutualFriends: [] });
-          return;
+    this.setState({ loading: true }, async () => {
+      try {
+        const url = `${STATIC_URL}/friends/mutual/${this.state.user1}/${this.state.user2}`;
+        const res = await axios.get(url);
+        if (res.data.status && res.data.mutualFriends.length > 0) {
+          this.infoToShow = <h5 className="text-center">Mutual Friends</h5>;
+
+          this.setState({
+            mutualFriends: res.data.mutualFriends,
+            loading: false
+          });
+        } else {
+          if (res.data.message) {
+            this.infoToShow = (
+              <h5 className="text-danger text-center">{res.data.message}</h5>
+            );
+            this.setState({ mutualFriends: [], loading: false });
+            return;
+          }
+          throw new Error();
         }
-        throw new Error();
+      } catch (err) {
+        this.infoToShow = (
+          <h5 className="text-center">No Mutual Friends Found</h5>
+        );
+        this.setState({ mutualFriends: [], loading: false });
       }
-    } catch (err) {
-      this.infoToShow = (
-        <h5 className="text-center">No Mutual Friends Found</h5>
-      );
-      this.setState({ mutualFriends: [] });
-    }
+    });
   }
 
   renderMutualFriendsList() {
@@ -59,7 +64,6 @@ class Twitter extends Component {
   }
 
   clearInputs() {
-    this.infoToShow = <h5 className="text-center">Loading...</h5>;
     this.setState({ user1: "", user2: "", mutualFriends: [] });
   }
 
@@ -113,8 +117,8 @@ class Twitter extends Component {
             </div>
           </div>
         </form>
-        <hr />
-        {this.infoToShow}
+        <br />
+        {this.state.loading ? <LoadingSpinner /> : this.infoToShow}
         <table className="table table-striped" style={{ marginBottom: "50px" }}>
           <thead>
             <tr>
