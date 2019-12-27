@@ -21,3 +21,7 @@ code {
   color: white;
   text-align: center;
 }
+
+.footer:hover {
+  background-color: green;
+}
