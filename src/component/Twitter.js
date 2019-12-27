@@ -3,9 +3,24 @@ var axios = require("axios");
 const STATIC_URL = "https://twitter-server-123.herokuapp.com";
 class Twitter extends Component {
   constructor(props) {
+    console.log("inside constructor");
     super(props);
     this.state = { user1: "", user2: "", mutualFriends: [] };
     this.infoToShow = <h5>Loading...</h5>;
+  }
+
+  componentDidMount() {
+    console.log("Inside ComponentDidMount");
+    this.infoToShow = <h5>Waiting for Submit...</h5>;
+  }
+
+  componentDidUpdate(prevProps, preState) {
+    console.log("inside componentDidUpdate");
+    this.infoToShow = <h5>Waiting for Submit...</h5>;
+  }
+
+  componentWillUnmount() {
+    console.log("inside componentWillUnmount");
   }
 
   async findMututalFriends(event) {
@@ -46,6 +61,7 @@ class Twitter extends Component {
   }
 
   render() {
+    console.log("inside render");
     return (
       <React.Fragment>
         <form>
