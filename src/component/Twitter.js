@@ -58,7 +58,11 @@ class Twitter extends Component {
       <tr key={index}>
         <td>{item.id}</td>
         <td>{item.screen_name}</td>
-        <td>{item.location}</td>
+        <td>
+          {item.location || (
+            <LoadingSpinner dataToHide={true} floatLeft={true} />
+          )}
+        </td>
       </tr>
     ));
   }
