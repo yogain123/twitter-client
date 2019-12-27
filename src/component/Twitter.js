@@ -64,6 +64,7 @@ class Twitter extends Component {
   }
 
   clearInputs() {
+    this.infoToShow = "";
     this.setState({ user1: "", user2: "", mutualFriends: [] });
   }
 
