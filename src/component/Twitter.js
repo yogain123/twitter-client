@@ -6,17 +6,17 @@ class Twitter extends Component {
     console.log("inside constructor");
     super(props);
     this.state = { user1: "", user2: "", mutualFriends: [] };
-    this.infoToShow = <h5>Loading...</h5>;
+    this.infoToShow = <h5 className="text-center">Loading...</h5>;
   }
 
   componentDidMount() {
     console.log("Inside ComponentDidMount");
-    this.infoToShow = <h5>Waiting for Submit...</h5>;
+    this.infoToShow = <h5 className="text-center">Waiting for Submit...</h5>;
   }
 
   componentDidUpdate(prevProps, preState) {
     console.log("inside componentDidUpdate");
-    this.infoToShow = <h5>Waiting for Submit...</h5>;
+    this.infoToShow = <h5 className="text-center">Waiting for Submit...</h5>;
   }
 
   componentWillUnmount() {
@@ -32,31 +32,34 @@ class Twitter extends Component {
         this.setState({ mutualFriends: res.data.mutualFriends });
       } else {
         if (res.data.message) {
-          this.infoToShow = res.data.message;
+          this.infoToShow = (
+            <h5 className="text-danger text-center">{res.data.message}</h5>
+          );
           this.setState({ mutualFriends: [] });
           return;
         }
         throw new Error();
       }
     } catch (err) {
-      this.infoToShow = <h5>No Mutual Friends Found</h5>;
+      this.infoToShow = (
+        <h5 className="text-center">No Mutual Friends Found</h5>
+      );
       this.setState({ mutualFriends: [] });
     }
   }
 
   renderMutualFriendsList() {
-    if (this.state.mutualFriends.length === 0) {
-      return this.infoToShow;
-    }
     return this.state.mutualFriends.map((item, index) => (
-      <li key={index} className="list-group-item">
-        {item}
-      </li>
+      <tr key={index}>
+        <td>{item.id}</td>
+        <td>{item.screen_name}</td>
+        <td>{item.location}</td>
+      </tr>
     ));
   }
 
   clearInputs() {
-    this.infoToShow = <h5>Loading...</h5>;
+    this.infoToShow = <h5 className="text-center">Loading...</h5>;
     this.setState({ user1: "", user2: "", mutualFriends: [] });
   }
 
@@ -111,9 +114,17 @@ class Twitter extends Component {
           </div>
         </form>
         <hr />
-        <ul className="list-group" style={{ marginBottom: "50px" }}>
-          {this.renderMutualFriendsList()}
-        </ul>
+        {this.infoToShow}
+        <table className="table table-striped" style={{ marginBottom: "50px" }}>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>NAME</th>
+              <th>LOCATION</th>
+            </tr>
+          </thead>
+          <tbody>{this.renderMutualFriendsList()}</tbody>
+        </table>
       </React.Fragment>
     );
   }
