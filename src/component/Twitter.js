@@ -7,10 +7,13 @@ class Twitter extends Component {
     console.log("inside constructor");
     super(props);
     this.state = { user1: "", user2: "", mutualFriends: [], loading: false };
+    this.inputRef = React.createRef();
   }
 
   componentDidMount() {
+    this.inputRef.current.focus();
     console.log("Inside ComponentDidMount");
+    console.log(this.inputRef);
   }
 
   componentDidUpdate(prevProps, preState) {
@@ -83,6 +86,7 @@ class Twitter extends Component {
                 type="text"
                 className="form-control"
                 placeholder="User 1"
+                ref={this.inputRef}
                 value={this.state.user1}
                 onChange={event => this.setState({ user1: event.target.value })}
               />
