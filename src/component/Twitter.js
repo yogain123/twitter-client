@@ -72,6 +72,7 @@ class Twitter extends Component {
 
   clearInputs() {
     this.infoToShow = "";
+    this.inputRef.current.focus();
     this.setState({ user1: "", user2: "", mutualFriends: [] });
   }
 
