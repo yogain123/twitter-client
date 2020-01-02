@@ -25,3 +25,7 @@ code {
 .footer:hover {
   background-color: green;
 }
+
+::selection {
+  background-color: slategrey;
+}
