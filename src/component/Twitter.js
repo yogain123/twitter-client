@@ -1,7 +1,25 @@
 import React, { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
+import styled from "styled-components";
 var axios = require("axios");
 const STATIC_URL = "https://twitter-server-123.herokuapp.com";
+
+const Button = styled.button`
+  cursor: pointer;
+  background: transparent;
+  font-size: 16px;
+  border-radius: 3px;
+  color: palevioletred;
+  border: 2px solid palevioletred;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  transition: 0.5s all ease-out;
+  &:hover {
+    background-color: palevioletred;
+    color: white;
+  }
+`;
+
 class Twitter extends Component {
   constructor(props) {
     console.log("inside constructor");
@@ -104,15 +122,15 @@ class Twitter extends Component {
           </div>
           <div className="text-center">
             <div className="btn-group">
-              <button
+              <Button
                 style={{ width: "10rem", marginTop: "50px" }}
                 type="submit"
                 className="btn btn-primary"
                 onClick={event => this.findMututalFriends(event)}
               >
                 Submit
-              </button>
-              <button
+              </Button>
+              <Button
                 style={{
                   width: "10rem",
                   marginTop: "50px",
@@ -123,7 +141,7 @@ class Twitter extends Component {
                 onClick={() => this.clearInputs()}
               >
                 Clear
-              </button>
+              </Button>
             </div>
           </div>
         </form>
